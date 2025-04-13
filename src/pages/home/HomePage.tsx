@@ -110,15 +110,16 @@ const HomePage = () => {
           O'zbek davlat kutubxonalaridan kitob qidirish tizimi
         </Title>
         <div className={styles.searchContainer}>
-          <input
-            type="text"
-            className={styles.searchInput}
+          <Search
             placeholder="Kitob qidirish..."
-            onChange={(e) => setSearchValue(e.target.value)}
+            allowClear
+            enterButton="Qidirish"
+            size="large"
+            value={searchValue}
+            onChange={(e) => handleSearch(e.target.value)}
+            onSearch={handleSearch}
+            className={styles.searchInput}
           />
-          <button className={styles.searchButton}>
-            Qidirish
-          </button>
         </div>
       </div>
 
@@ -157,7 +158,6 @@ const HomePage = () => {
         </Row>
       </div>
 
-      {/* Why Use Our Service Section */}
       <div className={styles.featuresSection}>
         <Title level={2} className={styles.sectionTitle}>
           Nega aynan bizning tizim?
@@ -177,7 +177,6 @@ const HomePage = () => {
         </Row>
       </div>
 
-      {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.socialLinks}>
