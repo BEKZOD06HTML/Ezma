@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Layout, Menu, Button, Select, Space } from 'antd';
+import { Layout, Menu, Select, Space } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { GlobalOutlined, UserOutlined, BookOutlined } from '@ant-design/icons';
 import styles from './Header.module.css';
@@ -9,8 +9,6 @@ const { Header } = Layout;
 const { Option } = Select;
 
 const AppHeader = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLibrarian, setIsLibrarian] = useState(false);
   const [language, setLanguage] = useState('uz');
   const navigate = useNavigate();
 
@@ -60,43 +58,14 @@ const AppHeader = () => {
           <Option value="en">ENG</Option>
         </Select>
 
-        {!isLoggedIn ? (
-          <Space>
-            <Button 
-              type="link" 
-              onClick={() => navigate('/login')}
-              className={styles.authButton}
-            >
-              <UserOutlined /> Kirish
-            </Button>
-            <Button 
-              type="primary" 
-              onClick={() => navigate('/register')}
-              className={styles.registerButton}
-            >
-              Ro'yxatdan o'tish
-            </Button>
-          </Space>
-        ) : (
-          <Space>
-            <Button 
-              type="link" 
-              onClick={() => navigate('/profile')}
-              className={styles.authButton}
-            >
-              <UserOutlined /> Profil
-            </Button>
-            {isLibrarian && (
-              <Button 
-                type="primary" 
-                onClick={() => navigate('/add-book')}
-                className={styles.addBookButton}
-              >
-                <BookOutlined /> Kitob qo'shish
-              </Button>
-            )}
-          </Space>
-        )}
+        <Space>
+          <Link to="/login" className={styles.authButton}>
+            <UserOutlined /> Kirish
+          </Link>
+          <Link to="/register" className={styles.registerButton}>
+            Ro'yxatdan o'tish
+          </Link>
+        </Space>
       </Space>
     </Header>
   );

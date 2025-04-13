@@ -1,10 +1,10 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Table, Space, Button, Pagination } from 'antd';
+import { Typography, Row, Col, Card, Table, Space } from 'antd';
 import { EnvironmentOutlined, PhoneOutlined, GlobalOutlined } from '@ant-design/icons';
 import { FaFacebook, FaTelegram, FaInstagram } from 'react-icons/fa';
 import styles from './LibraryDetail.module.css';
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Text } = Typography;
 
 const LibraryDetail = () => {
   // Mock ma'lumotlar
@@ -59,7 +59,7 @@ const LibraryDetail = () => {
     {
       title: 'Mavjud',
       key: 'availability',
-      render: (text: any, record: any) => (
+      render: (_: any, record: any) => (
         <span>{record.available}/{record.total}</span>
       ),
     }
