@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Card, Typography, Input, Select, Space, Button } from 'antd';
-import { SearchOutlined, EnvironmentOutlined, BookOutlined } from '@ant-design/icons';
+import { Row, Col, Card, Typography, Input, Select, Space } from 'antd';
+import { EnvironmentOutlined, BookOutlined } from '@ant-design/icons';
 import styles from './LibraryList.module.css';
 
 const { Title, Text } = Typography;
-const { Search } = Input;
 const { Option } = Select;
 
 const LibraryList = () => {

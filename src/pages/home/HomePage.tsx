@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Input, Row, Col, Card, Typography, Space, Button } from 'antd';
 import { 
-  SearchOutlined, 
   BookOutlined, 
   ThunderboltOutlined, 
   EnvironmentOutlined, 
@@ -10,8 +9,7 @@ import {
   FacebookOutlined,
   InstagramOutlined,
   MailOutlined,
-  PhoneOutlined,
-  FilterOutlined
+  PhoneOutlined
 } from '@ant-design/icons';
 import { SendOutlined } from '@ant-design/icons';
 import styles from './HomePage.module.css';

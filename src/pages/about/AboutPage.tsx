@@ -1,4 +1,3 @@
-import React from 'react';
 import { Carousel, Collapse, Typography, Row, Col } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import styles from './AboutPage.module.css';
