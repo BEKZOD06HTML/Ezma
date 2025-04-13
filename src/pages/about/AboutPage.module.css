@@ -1,0 +1,462 @@
+.aboutPage {
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0B2D2D 0%, #1a4242 100%);
+}
+
+.header {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.header h1 {
+  color: #FFD700;
+  margin-bottom: 20px;
+  font-size: 40px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.teamSection {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.teamSection h2 {
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+}
+
+.memberCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.memberCard:hover {
+  transform: translateY(-5px);
+  border-color: #FFD700;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.memberImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  border: 3px solid #FFD700;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.memberImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.memberCard:hover .memberImage {
+  transform: scale(1.05);
+  border-width: 4px;
+}
+
+.memberCard:hover .memberImage img {
+  transform: scale(1.1);
+}
+
+.memberName {
+  color: #FFD700;
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.memberRole {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.memberBio {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.slick-dots {
+  bottom: -40px;
+}
+
+.slick-dots li button:before {
+  color: rgba(255, 215, 0, 0.3);
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #FFD700;
+  transform: scale(1.2);
+}
+
+.slick-prev,
+.slick-next {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: rgba(255, 215, 0, 0.2);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #FFD700;
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 32px;
+  }
+
+  .header p {
+    font-size: 16px;
+  }
+
+  .teamSection h2 {
+    font-size: 29px;
+  }
+
+  .memberImage {
+    width: 120px;
+    height: 120px;
+  }
+
+  .memberName {
+    font-size: 1.1rem;
+  }
+
+  .slick-prev,
+  .slick-next {
+    display: none;
+  }
+}
+
+.heroSection {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  padding: 40px 0;
+}
+
+.heroSection h1 {
+  color: #FFD700 !important;
+  font-size: 40px !important;
+  margin-bottom: 20px !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.heroSection p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 19px !important;
+  line-height: 1.6 !important;
+}
+
+.carouselSection {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.carouselSection h2 {
+  color: #FFD700 !important;
+  text-align: center;
+  margin-bottom: 40px !important;
+  font-size: 32px !important;
+}
+
+.carousel {
+  padding: 20px 0;
+}
+
+.carousel :global(.slick-prev),
+.carousel :global(.slick-next) {
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(11, 45, 45, 0.9) !important;
+  border: 2px solid #FFD700 !important;
+  border-radius: 50% !important;
+  z-index: 1;
+  cursor: pointer !important;
+  position: absolute !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.carousel :global(.slick-prev) {
+  left: -50px !important;
+}
+
+.carousel :global(.slick-next) {
+  right: -50px !important;
+}
+
+.carousel :global(.slick-prev:before),
+.carousel :global(.slick-next:before) {
+  content: '' !important;
+}
+
+.carousel :global(.custom-arrow) {
+  color: #FFD700;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.carousel :global(.slick-prev:hover .custom-arrow),
+.carousel :global(.slick-next:hover .custom-arrow) {
+  color: #0B2D2D;
+}
+
+.carousel :global(.slick-dots) {
+  bottom: -40px;
+}
+
+.carousel :global(.slick-dots li) {
+  width: 30px;
+  height: 6px;
+  margin: 0 5px;
+}
+
+.carousel :global(.slick-dots li button) {
+  width: 30px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel :global(.slick-dots li button:before) {
+  display: none;
+}
+
+.carousel :global(.slick-dots li.slick-active button) {
+  background: #FFD700;
+  width: 40px;
+}
+
+.carouselSlide {
+  padding: 20px;
+}
+
+.memberImage {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.memberImage:hover {
+  transform: translateY(-5px);
+  border-color: #FFD700;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.memberImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.memberImage:hover img {
+  transform: scale(1.05);
+}
+
+.memberInfo {
+  padding: 20px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.memberInfo h3 {
+  color: #FFD700 !important;
+  margin-bottom: 10px !important;
+  font-size: 1.8rem !important;
+}
+
+.memberRole {
+  color: rgba(255, 215, 0, 0.8) !important;
+  margin-bottom: 20px !important;
+  font-size: 1.2rem !important;
+}
+
+.memberInfo p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+}
+
+.faqSection {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.faqSection h2 {
+  color: #FFD700 !important;
+  text-align: center;
+  margin-bottom: 40px !important;
+  font-size: 32px !important;
+}
+
+.faqCollapse {
+  background: transparent !important;
+  border: none !important;
+}
+
+.faqPanel {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  border-radius: 10px !important;
+  margin-bottom: 16px !important;
+  transition: all 0.3s ease;
+}
+
+.faqPanel:hover {
+  border-color: #FFD700 !important;
+  transform: translateX(5px);
+}
+
+.faqPanel :global(.ant-collapse-header) {
+  color: #FFD700 !important;
+  font-size: 18px !important;
+  padding: 16px 24px !important;
+}
+
+.faqPanel :global(.ant-collapse-content) {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-top: 1px solid rgba(255, 215, 0, 0.2) !important;
+}
+
+.faqPanel :global(.ant-collapse-content-box) {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  padding: 16px 24px !important;
+}
+
+.faqPanel :global(.anticon) {
+  color: #FFD700 !important;
+}
+
+@media (max-width: 1300px) {
+  .carousel :global(.slick-prev) {
+    left: -60px;
+  }
+
+  .carousel :global(.slick-next) {
+    right: -60px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .carousel :global(.slick-prev) {
+    left: -40px;
+  }
+
+  .carousel :global(.slick-next) {
+    right: -40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutPage {
+    padding: 20px;
+  }
+
+  .heroSection {
+    padding: 20px 0;
+    margin-bottom: 40px;
+  }
+
+  .heroSection h1 {
+    font-size: 32px !important;
+  }
+
+  .carouselSection,
+  .faqSection {
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+
+  .carousel :global(.slick-prev),
+  .carousel :global(.slick-next) {
+    display: none !important;
+  }
+
+  .carousel :global(.slick-dots) {
+    bottom: -30px;
+  }
+
+  .carousel :global(.slick-dots li) {
+    width: 20px;
+    height: 4px;
+    margin: 0 3px;
+  }
+
+  .carousel :global(.slick-dots li button) {
+    width: 20px;
+    height: 4px;
+  }
+
+  .carousel :global(.slick-dots li.slick-active button) {
+    width: 30px;
+  }
+
+  .memberImage {
+    height: 250px;
+  }
+
+  .memberInfo {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .memberInfo h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .memberRole {
+    font-size: 1rem !important;
+  }
+} 

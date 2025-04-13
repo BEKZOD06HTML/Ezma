@@ -1,0 +1,212 @@
+.libraryList {
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0B2D2D 0%, #1a4242 100%);
+}
+
+.header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.header h1 {
+  color: #FFD700 !important;
+  margin-bottom: 40px !important;
+  font-size: 2.5rem !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.searchInput {
+  width: 300px !important;
+  margin-top: 3px !important;
+}
+
+.searchInput2,
+.searchInput2:global(.ant-input) {
+  width: 300px !important;
+  margin-top: 3px !important;
+  background: rgba(11, 45, 45, 0.9) !important;
+  border: 2px solid #FFD700 !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  height: 45px !important;
+  font-size: 16px !important;
+  padding: 8px 15px !important;
+  position: relative;
+  top: 6px;
+}
+
+
+.searchInput2:global(.ant-input)::placeholder {
+  color: #ffffff !important;
+  opacity: 0.7 !important;
+}
+
+.searchInput2:global(.ant-input-affix-wrapper) {
+  display: none !important;
+}
+
+.searchInput2:hover {
+  border-color: #FFD700 !important;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4) !important;
+}
+
+.citySelect {
+  width: 200px !important;
+  margin-top: 3px !important;
+}
+
+.citySelect :global(.ant-select-selector) {
+  background: rgba(11, 45, 45, 0.9) !important;
+  border: 2px solid #FFD700 !important;
+  border-radius: 8px !important;
+  height: 45px !important;
+  padding: 8px 15px !important;
+}
+
+.citySelect :global(.ant-select-selection-item) {
+  color: #ffffff !important;
+  line-height: 27px !important;
+  font-size: 16px !important;
+}
+
+.cityDropdown {
+  background: rgba(11, 45, 45, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border: 2px solid #FFD700 !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+}
+
+.cityDropdown :global(.ant-select-item) {
+  color: rgba(255, 255, 255, 0.8) !important;
+  padding: 8px 11px !important;
+  font-size: 16px !important;
+  border-radius: 4px !important;
+}
+
+.cityDropdown :global(.ant-select-item-option-active) {
+  background: rgba(255, 215, 0, 0.1) !important;
+}
+
+.cityDropdown :global(.ant-select-item-option-selected) {
+  background: rgba(255, 215, 0, 0.2) !important;
+  color: #FFD700 !important;
+}
+
+.libraryGrid {
+  max-width: 1200px;
+  margin: 0 auto !important;
+}
+
+.libraryLink {
+  text-decoration: none;
+  display: block;
+}
+
+.libraryCard {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  backdrop-filter: blur(10px);
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.libraryCard:hover {
+  transform: translateY(-5px);
+  border-color: #FFD700 !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.imageContainer {
+  height: 200px;
+  overflow: hidden;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.libraryCard:hover .imageContainer img {
+  transform: scale(1.1);
+}
+
+.libraryName {
+  color: #FFD700 !important;
+  margin-bottom: 15px !important;
+  font-size: 1.2rem !important;
+  line-height: 1.4 !important;
+  height: 2.8em;
+  overflow: hidden;
+}
+
+.libraryInfo {
+  width: 100%;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  color: #FFD700;
+  font-size: 1.1rem;
+}
+
+.infoItem span {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.noResults {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+.noResults h3 {
+  color: #FFD700 !important;
+  margin-bottom: 10px !important;
+}
+
+.noResults span {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+@media (max-width: 768px) {
+  .libraryList {
+    padding: 20px;
+  }
+
+  .header h1 {
+    font-size: 2rem !important;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .imageContainer {
+    height: 160px;
+  }
+
+  .libraryName {
+    font-size: 1.1rem !important;
+  }
+} 

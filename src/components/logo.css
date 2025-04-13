@@ -1,0 +1,58 @@
+.ring{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -80px;
+    left: -13px;
+    animation: animate 4s linear infinite;
+}
+.logo{
+    position: relative;
+}
+
+.ring i {
+    position: absolute;
+    inset: 0;
+    border: 3px solid #fff;
+    transition: 0.5;
+}
+.ring i:nth-child(1) {
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    animation: animate1 6s linear infinite;
+}
+.ring i:nth-child(2) {
+    color:#00ff0a ;
+    border-radius: 36% 44% 56% 59%  / 38% 62% 68% 37% ;
+    animation: animate2  4s linear infinite;
+}
+.ring i:nth-child(3) {
+    color: #ff0057;
+    border-radius:   40% 44% 56% 59% /  37% 62% 63% 37%;
+    animation: animate2  10s linear infinite;
+}
+
+.ring:hover i {
+    color: #fffd44;
+    border: 6px solid #fffd44;
+    filter: drop-shadow(0 0 20px #ffffff);
+
+}
+
+@keyframes animate1 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate2 {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+

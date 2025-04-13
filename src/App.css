@@ -1,42 +1,90 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
+
+
+.homePage {
+  min-height: 100vh;
+}
+
+.heroSection {
+  background: linear-gradient(rgba(11, 45, 45, 0.9), rgba(11, 45, 45, 0.9)),
+              url('/hero-background.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.mainTitle {
+  color: #C9A657 !important;
+  font-size: 2.5rem !important;
+  margin-bottom: 40px !important;
+  max-width: 800px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.searchBar {
+  max-width: 600px;
+  width: 100%;
+}
+
+.searchBar :global(.ant-input) {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.searchBar :global(.ant-btn) {
+  background: #C9A657;
+  border-color: #C9A657;
+}
+
+.popularBooksSection,
+.featuresSection {
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.sectionTitle {
+  text-align: center;
+  color: #0B2D2D !important;
+  margin-bottom: 40px !important;
+}
+
+.bookCard {
+  height: 100%;
+}
+
+.bookCard img {
+  height: 300px;
+  object-fit: cover;
+}
+
+.featureCard {
+  text-align: center;
+  height: 100%;
+  background: #f8f8f8;
+  border: none;
+  transition: transform 0.3s;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+}
+
+.featureIcon {
+  font-size: 40px;
+  color: #C9A657;
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 60px 20px;
+    min-height: 400px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .mainTitle {
+    font-size: 2rem !important;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

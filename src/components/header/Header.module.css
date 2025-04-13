@@ -1,0 +1,126 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  background: #0B2D2D !important;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 100px;
+  border-bottom: none !important;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logoText {
+  color: #FFD700 !important;
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.menu {
+  flex: 1;
+  margin: 0 48px;
+  background: transparent;
+  border: none !important;
+}
+
+.menu:global(.ant-menu) {
+  background: transparent !important;
+  border: none !important;
+}
+
+.menu :global(.ant-menu-item) {
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 20px !important;
+}
+
+.menu :global(.ant-menu-item)::after {
+  display: none !important;
+}
+
+.menu :global(.ant-menu-item) a {
+  color: #FFFFFF !important;
+  font-size: 16px;
+}
+
+.menu :global(.ant-menu-item-selected) a {
+  color: #FFD700 !important;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.languageSelect {
+  width: 80px;
+}
+
+.languageSelect :global(.ant-select-selector) {
+  background: transparent !important;
+  border-color: #FFD700 !important;
+}
+
+.languageSelect :global(.ant-select-selection-item) {
+  color: #FFD700 !important;
+}
+
+.authButton {
+  color: #FFFFFF !important;
+  font-size: 16px;
+}
+
+.authButton:hover {
+  color: #FFD700 !important;
+}
+
+.registerButton,
+.addBookButton {
+  background: #FFD700 !important;
+  border-color: #FFD700 !important;
+  color: #0B2D2D !important;
+  font-size: 16px;
+}
+
+.registerButton:hover,
+.addBookButton:hover {
+  background: #FFE44D !important;
+  border-color: #FFE44D !important;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .menu {
+    margin: 0 20px;
+  }
+
+  .rightSection {
+    gap: 8px;
+  }
+
+  .logoText {
+    font-size: 24px;
+  }
+
+  .menu :global(.ant-menu-item) a {
+    font-size: 14px;
+  }
+
+  .authButton,
+  .registerButton,
+  .addBookButton {
+    font-size: 14px;
+  }
+} 
