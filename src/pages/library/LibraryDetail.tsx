@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography, Row, Col, Card, Table, Space } from 'antd';
 import { EnvironmentOutlined, PhoneOutlined, GlobalOutlined } from '@ant-design/icons';
 import { FaFacebook, FaTelegram, FaInstagram } from 'react-icons/fa';
