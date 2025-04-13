@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Layout, Menu, Select, Space } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
-import { GlobalOutlined, UserOutlined, BookOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { GlobalOutlined, UserOutlined } from '@ant-design/icons';
 import styles from './Header.module.css';
 import Logo from '../logo';
 
@@ -10,7 +10,6 @@ const { Option } = Select;
 
 const AppHeader = () => {
   const [language, setLanguage] = useState('uz');
-  const navigate = useNavigate();
 
   const menuItems = [
     {
