@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Typography, Space } from 'antd';
+import { Layout, Row, Col, Space } from 'antd';
 import { Link } from 'react-router-dom';
 import {
   FacebookOutlined,
@@ -13,7 +13,6 @@ import {
 import styles from './Footer.module.css';
 
 const { Footer: AntFooter } = Layout;
-
 
 const Footer: React.FC = () => {
   const ExternalLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
@@ -35,12 +34,14 @@ const Footer: React.FC = () => {
               </p>
             </div>
           </Col>
+
           <Col xs={24} sm={16}>
             <Row gutter={[32, 24]}>
+              {/* Explore Section */}
               <Col xs={12} sm={8}>
-                <h4 className={styles.columnTitle}>
+                <h5 className={styles.columnTitle}>
                   <CompassOutlined className={styles.titleIcon} /> Explore
-                </h4>
+                </h5>
                 <Space direction="vertical" className={styles.linkGroup}>
                   <Link to="/books"><BookOutlined /> Books</Link>
                   <Link to="/journals">Journals</Link>
@@ -49,10 +50,11 @@ const Footer: React.FC = () => {
                 </Space>
               </Col>
 
+              {/* Connect Section */}
               <Col xs={12} sm={8}>
-                <h4 className={styles.columnTitle}>
+                <h5 className={styles.columnTitle}>
                   <FacebookOutlined className={styles.titleIcon} /> Connect
-                </h4>
+                </h5>
                 <Space direction="vertical" className={styles.linkGroup}>
                   <ExternalLink to="https://facebook.com"><FacebookOutlined /> Facebook</ExternalLink>
                   <ExternalLink to="https://twitter.com"><TwitterOutlined /> Twitter</ExternalLink>
@@ -61,10 +63,11 @@ const Footer: React.FC = () => {
                 </Space>
               </Col>
 
+              {/* Support Section */}
               <Col xs={12} sm={8}>
-                  <h4 className={styles.columnTitle}>
+                <h5 className={styles.columnTitle}>
                   <CustomerServiceOutlined className={styles.titleIcon} /> Support
-                </h4>
+                </h5>
                 <Space direction="vertical" className={styles.linkGroup}>
                   <Link to="/faqs">FAQs</Link>
                   <Link to="/help">Help Desk</Link>
