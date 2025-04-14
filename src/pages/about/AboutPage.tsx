@@ -1,10 +1,11 @@
-import { Carousel, Collapse, Typography, Row, Col } from 'antd';
+import React from 'react';
+import { Carousel, Collapse, Row, Col } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import styles from './AboutPage.module.css';
 
 const { Panel } = Collapse;
 
-const AboutPage = () => {
+const AboutPage: React.FC = () => {
   const teamMembers = [
     {
       id: 1,
@@ -54,12 +55,11 @@ const AboutPage = () => {
 
   return (
     <div className={styles.aboutPage}>
-      <div className={styles.heroSection}>
-        <h1>Biz haqimizda</h1>
-        <p>
-          O'zbekiston kutubxonalari elektron katalogini yaratish orqali bilimga bo'lgan yo'lni osonlashtirish bizning asosiy maqsadimiz
-        </p>
-      </div>
+      <h1 className={styles.title}>About Us</h1>
+      <p className={styles.description}>
+        Welcome to our library management system. We are dedicated to providing the best service to our users.
+      </p>
+    
 
       <div className={styles.carouselSection}>
         <h2>Bizning jamoa</h2>

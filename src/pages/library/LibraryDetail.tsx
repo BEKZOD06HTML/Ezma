@@ -1,11 +1,12 @@
-import { Typography, Row, Col, Card, Table, Space } from 'antd';
+
+import { Card, Row, Col, Space, Table, } from 'antd';
 import { EnvironmentOutlined, PhoneOutlined, GlobalOutlined } from '@ant-design/icons';
 import { FaFacebook, FaTelegram, FaInstagram } from 'react-icons/fa';
 import styles from './LibraryDetail.module.css';
 
 
 const LibraryDetail = () => {
-  // Mock ma'lumotlar
+
   const libraryInfo = {
     name: "Alisher Navoiy nomidagi O'zbekiston Milliy Kutubxonasi",
     address: "Toshkent shahri, Navoiy ko'chasi, 1-uy",
@@ -35,7 +36,7 @@ const LibraryDetail = () => {
       available: 3,
       total: 7
     },
-    // Boshqa kitoblar...
+
   ];
 
   const columns = [
