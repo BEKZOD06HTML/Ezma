@@ -56,10 +56,10 @@ const AboutPage = () => {
   return (
     <div className={styles.aboutPage}>
       <div className={styles.heroSection}>
-        <Title level={1}>Biz haqimizda</Title>
-        <Paragraph>
+        <h1>Biz haqimizda</h1>
+        <p>
           O'zbekiston kutubxonalari elektron katalogini yaratish orqali bilimga bo'lgan yo'lni osonlashtirish bizning asosiy maqsadimiz
-        </Paragraph>
+        </p>
       </div>
 
       <div className={styles.carouselSection}>
@@ -71,7 +71,6 @@ const AboutPage = () => {
           arrows={true}
           autoplaySpeed={5000}
           pauseOnHover={true}
-       
           draggable={false}
           swipe={false}
         >
