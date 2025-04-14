@@ -5,13 +5,8 @@ import {
   BookOutlined, 
   ThunderboltOutlined, 
   EnvironmentOutlined, 
-  SafetyCertificateOutlined,
-  FacebookOutlined,
-  InstagramOutlined,
-  MailOutlined,
-  PhoneOutlined
+  SafetyCertificateOutlined
 } from '@ant-design/icons';
-import { SendOutlined } from '@ant-design/icons';
 import styles from './HomePage.module.css';
 
 const { Title, Paragraph } = Typography;
