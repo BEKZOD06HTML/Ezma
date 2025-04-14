@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout as AntLayout } from 'antd';
 import AppHeader from '../header/Header';
+import Footer from '../footer/Footer';
 import styles from './Layout.module.css';
 
 const { Content } = AntLayout;
@@ -16,6 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Content className={styles.content}>
         {children}
       </Content>
+      <Footer />
     </AntLayout>
   );
 };

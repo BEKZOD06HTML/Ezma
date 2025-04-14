@@ -240,28 +240,6 @@ const HomePage = () => {
           ))}
         </Row>
       </div>
-
-      <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          <div className={styles.socialLinks}>
-            <Button type="link" icon={<FacebookOutlined />} />
-            <Button type="link" icon={<SendOutlined />} />
-            <Button type="link" icon={<InstagramOutlined />} />
-          </div>
-          <div className={styles.contactInfo}>
-            <Space direction="vertical">
-              <Space>
-                <MailOutlined />
-                <span>info@ezma.uz</span>
-              </Space>
-              <Space>
-                <PhoneOutlined />
-                <span>+998 99 999 99 99</span>
-              </Space>
-            </Space>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
