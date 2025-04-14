@@ -16,24 +16,27 @@ const { Footer: AntFooter } = Layout;
 const { Title, Text } = Typography;
 
 const Footer: React.FC = () => {
+  const ExternalLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
+    <a href={to} target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
+      {children}
+    </a>
+  );
+
   return (
-  <div>
-      <AntFooter className={styles.footer}>
+    <AntFooter className={styles.footer}>
       <div className={styles.footerContent}>
         <Row gutter={[64, 32]} justify="space-between">
-        
           <Col xs={24} sm={8}>
             <div className={styles.logoSection}>
               <h1 className={styles.logo_footer}>Ezma</h1>
               <Text className={styles.copyright}>
-                © 2025 Libr, Inc.<br />
+                © {new Date().getFullYear()} Ezma<br />
                 All rights reserved.
               </Text>
             </div>
           </Col>
           <Col xs={24} sm={16}>
             <Row gutter={[32, 24]}>
-     
               <Col xs={12} sm={8}>
                 <Title level={5} className={styles.columnTitle}>
                   <CompassOutlined className={styles.titleIcon} /> Explore
@@ -46,16 +49,15 @@ const Footer: React.FC = () => {
                 </Space>
               </Col>
 
-       
               <Col xs={12} sm={8}>
                 <Title level={5} className={styles.columnTitle}>
                   <FacebookOutlined className={styles.titleIcon} /> Connect
                 </Title>
                 <Space direction="vertical" className={styles.linkGroup}>
-                  <Link to="https://facebook.com"><FacebookOutlined /> Facebook</Link>
-                  <Link to="https://twitter.com"><TwitterOutlined /> Twitter</Link>
-                  <Link to="https://instagram.com"><InstagramOutlined /> Instagram</Link>
-                  <Link to="https://youtube.com"><YoutubeOutlined /> YouTube</Link>
+                  <ExternalLink to="https://facebook.com"><FacebookOutlined /> Facebook</ExternalLink>
+                  <ExternalLink to="https://twitter.com"><TwitterOutlined /> Twitter</ExternalLink>
+                  <ExternalLink to="https://instagram.com"><InstagramOutlined /> Instagram</ExternalLink>
+                  <ExternalLink to="https://youtube.com"><YoutubeOutlined /> YouTube</ExternalLink>
                 </Space>
               </Col>
 
@@ -75,7 +77,6 @@ const Footer: React.FC = () => {
         </Row>
       </div>
     </AntFooter>
-  </div>
   );
 };
 
