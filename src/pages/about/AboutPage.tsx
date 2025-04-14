@@ -2,7 +2,6 @@ import { Carousel, Collapse, Typography, Row, Col } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import styles from './AboutPage.module.css';
 
-const { Title, Paragraph } = Typography;
 const { Panel } = Collapse;
 
 const AboutPage = () => {
@@ -63,7 +62,7 @@ const AboutPage = () => {
       </div>
 
       <div className={styles.carouselSection}>
-        <Title level={2}>Bizning jamoa</Title>
+        <h2>Bizning jamoa</h2>
         <Carousel
           autoplay
           className={styles.carousel}
@@ -84,9 +83,9 @@ const AboutPage = () => {
                 </Col>
                 <Col xs={24} md={12}>
                   <div className={styles.memberInfo}>
-                    <Title level={3}>{member.name}</Title>
-                    <Title level={4} className={styles.memberRole}>{member.role}</Title>
-                    <Paragraph>{member.description}</Paragraph>
+                    <h3>{member.name}</h3>
+                    <h4 className={styles.memberRole}>{member.role}</h4>
+                    <p>{member.description}</p>
                   </div>
                 </Col>
               </Row>
@@ -96,7 +95,7 @@ const AboutPage = () => {
       </div>
 
       <div className={styles.faqSection}>
-        <Title level={2}>Ko'p so'raladigan savollar</Title>
+        <h2 >Ko'p so'raladigan savollar</h2>
         <Collapse 
           expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
           className={styles.faqCollapse}
@@ -107,7 +106,7 @@ const AboutPage = () => {
               key={index}
               className={styles.faqPanel}
             >
-              <Paragraph>{item.answer}</Paragraph>
+              <p>{item.answer}</p>
             </Panel>
           ))}
         </Collapse>

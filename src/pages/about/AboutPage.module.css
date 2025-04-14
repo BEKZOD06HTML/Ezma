@@ -205,24 +205,6 @@
   left: -20px !important;
 }
 
-.carousel :global(.slick-dots li button) {
-  width: 30px;
-  height: 6px;
-  border-radius: 3px;
-  background: rgba(255, 215, 0, 0.3);
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.carousel :global(.slick-dots li button:before) {
-  display: none;
-}
-
-.carousel :global(.slick-dots li.slick-active button) {
-  background: #FFD700;
-  width: 40px;
-}
-
 .carouselSlide {
   padding: 20px;
 }
@@ -307,12 +289,10 @@
   transition: all 0.3s ease;
   color: #FFD700 !important;
 }
-
 .faqPanel:hover {
   border-color: #FFD700 !important;
   transform: translateX(5px);
 }
-
 @media (max-width: 1300px) {
   .carousel :global(.slick-prev) {
     left: -60px;
@@ -352,31 +332,6 @@
     padding: 20px;
     margin-bottom: 40px;
   }
-
-  .carousel :global(.slick-prev),
-  .carousel :global(.slick-next) {
-    display: none !important;
-  }
-
-  .carousel :global(.slick-dots) {
-    bottom: -30px;
-  }
-
-  .carousel :global(.slick-dots li) {
-    width: 20px;
-    height: 4px;
-    margin: 0 3px;
-  }
-
-  .carousel :global(.slick-dots li button) {
-    width: 20px;
-    height: 4px;
-  }
-
-  .carousel :global(.slick-dots li.slick-active button) {
-    width: 30px;
-  }
-
   .memberImage {
     height: 250px;
   }

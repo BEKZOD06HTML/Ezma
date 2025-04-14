@@ -4,7 +4,6 @@ import { Row, Col, Card, Typography, Input, Select, Space } from 'antd';
 import { EnvironmentOutlined, BookOutlined } from '@ant-design/icons';
 import styles from './LibraryList.module.css';
 
-const { Title, Text } = Typography;
 const { Option } = Select;
 
 const LibraryList = () => {
@@ -72,7 +71,7 @@ const LibraryList = () => {
   return (
     <div className={styles.libraryList}>
       <div className={styles.header}>
-        <Title level={1}>Kutubxonalar</Title>
+        <h1>Kutubxonalar</h1>
         <div className={styles.filters}>
           <Space size={20}>
             <Input
@@ -108,17 +107,17 @@ const LibraryList = () => {
                   </div>
                 }
               >
-                <Title level={4} className={styles.libraryName}>
+                <h4 className={styles.libraryName}>
                   {library.name}
-                </Title>
+                </h4>
                 <Space direction="vertical" size={12} className={styles.libraryInfo}>
                   <div className={styles.infoItem}>
                     <EnvironmentOutlined className={styles.icon} />
-                    <Text>{library.city}, {library.address}</Text>
+                    <p>{library.city}, {library.address}</p>
                   </div>
                   <div className={styles.infoItem}>
                     <BookOutlined className={styles.icon} />
-                    <Text>{library.totalBooks.toLocaleString()} ta kitob</Text>
+                    <p>{library.totalBooks.toLocaleString()} ta kitob</p>
                   </div>
                 </Space>
               </Card>
@@ -129,8 +128,8 @@ const LibraryList = () => {
 
       {filteredLibraries.length === 0 && (
         <div className={styles.noResults}>
-          <Title level={3}>Kutubxonalar topilmadi</Title>
-          <Text>Iltimos, qidiruv so'rovini o'zgartiring yoki filtrlarni qayta sozlang</Text>
+          <h3>Kutubxonalar topilmadi</h3>
+          <p>Iltimos, qidiruv so'rovini o'zgartiring yoki filtrlarni qayta sozlang</p>
         </div>
       )}
     </div>

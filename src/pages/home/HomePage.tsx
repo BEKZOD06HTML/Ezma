@@ -9,7 +9,6 @@ import {
 } from '@ant-design/icons';
 import styles from './HomePage.module.css';
 
-const { Title, Paragraph } = Typography;
 const { Search } = Input;
 
 interface Book {
@@ -122,8 +121,8 @@ const HomePage = () => {
   const LibraryCard = ({ library }: { library: Library }) => (
     <Card className={styles.libraryCard}>
       <img src={library.image} alt={library.name} className={styles.libraryImage} />
-      <Title level={4}>{library.name}</Title>
-      <Paragraph>{library.address}</Paragraph>
+      <h4>{library.name}</h4>
+      <p>{library.address}</p>
       <Link to={`/library/${library.id}`}>
         <Button type="primary" className={styles.detailButton}>
           Batafsil
@@ -135,9 +134,9 @@ const HomePage = () => {
   return (
     <div className={styles.homePage}>
       <div className={styles.heroSection}>
-        <Title level={1} className={styles.mainTitle}>
+        <h1 className={styles.mainTitle}>
           O'zbek davlat kutubxonalaridan kitob qidirish tizimi
-        </Title>
+        </h1>
         <div className={styles.searchContainer}>
           <Search
             placeholder="Kitob qidirish..."
@@ -153,9 +152,9 @@ const HomePage = () => {
 
       {isSearching && (
         <div className={styles.searchResults}>
-          <Title level={2} className={styles.sectionTitle}>
+          <h2 className={styles.sectionTitle}>
             Qidiruv natijalari
-          </Title>
+          </h2>
           {filteredBooks.length > 0 ? (
             <Row gutter={[24, 24]}>
               {filteredBooks.map(book => (
@@ -183,12 +182,12 @@ const HomePage = () => {
       )}
 
       <div className={styles.librariesSection}>
-        <Title level={2} className={styles.sectionTitle}>
+        <h2 className={styles.sectionTitle}>
           Kutubxonalar
-        </Title>
+        </h2>
         <Row gutter={[24, 24]}>
           {libraries.map(library => (
-            <Col xs={24} md={8} key={library.id}>
+            <Col span={8} key={library.id}>
               <LibraryCard library={library} />
             </Col>
           ))}
@@ -196,12 +195,12 @@ const HomePage = () => {
       </div>
 
       <div className={styles.popularBooksSection}>
-        <Title level={2} className={styles.sectionTitle}>
+        <h2 className={styles.sectionTitle}>
           Eng ko'p qidirilgan kitoblar
-        </Title>
+        </h2>
         <Row gutter={[24, 24]}>
           {popularBooks.map(book => (
-            <Col xs={24} sm={12} md={8} key={book.id}>
+            <Col span={8} key={book.id}>
               <Card
                 hoverable
                 cover={<img alt={book.title} src={book.image} />}
@@ -218,17 +217,17 @@ const HomePage = () => {
       </div>
 
       <div className={styles.featuresSection}>
-        <Title level={2} className={styles.sectionTitle}>
+        <h2 className={styles.sectionTitle}>
           Nega aynan bizning tizim?
-        </Title>
+        </h2>
         <Row gutter={[32, 32]}>
           {features.map((feature, index) => (
-            <Col xs={24} sm={12} md={6} key={index}>
+            <Col span={6} key={index}>
               <Card className={styles.featureCard}>
                 <Space direction="vertical" align="center">
                   {feature.icon}
-                  <Title level={4}>{feature.title}</Title>
-                  <Paragraph>{feature.description}</Paragraph>
+                  <h4>{feature.title}</h4>
+                  <p>{feature.description}</p>
                 </Space>
               </Card>
             </Col>

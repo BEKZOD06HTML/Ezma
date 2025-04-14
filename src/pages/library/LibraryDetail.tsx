@@ -3,7 +3,6 @@ import { EnvironmentOutlined, PhoneOutlined, GlobalOutlined } from '@ant-design/
 import { FaFacebook, FaTelegram, FaInstagram } from 'react-icons/fa';
 import styles from './LibraryDetail.module.css';
 
-const { Title, Text } = Typography;
 
 const LibraryDetail = () => {
   // Mock ma'lumotlar
@@ -67,7 +66,7 @@ const LibraryDetail = () => {
   return (
     <div className={styles.libraryDetail}>
       <div className={styles.heroSection}>
-        <Title level={1}>{libraryInfo.name}</Title>
+        <h1>{libraryInfo.name}</h1>
       </div>
 
       <Row gutter={[32, 32]} className={styles.contentSection}>
@@ -76,15 +75,15 @@ const LibraryDetail = () => {
             <Space direction="vertical" size="large" style={{ width: '100%' }}>
               <div className={styles.infoItem}>
                 <EnvironmentOutlined className={styles.icon} />
-                <Text>{libraryInfo.address}</Text>
+                <p>{libraryInfo.address}</p>
               </div>
               <div className={styles.infoItem}>
                 <PhoneOutlined className={styles.icon} />
-                <Text>{libraryInfo.phone}</Text>
+                <p>{libraryInfo.phone}</p>
               </div>
               <div className={styles.infoItem}>
                 <GlobalOutlined className={styles.icon} />
-                <Text>{libraryInfo.workingHours}</Text>
+                <p>{libraryInfo.workingHours}</p>
               </div>
               <div className={styles.socialLinks}>
                 <a href={libraryInfo.social.facebook} target="_blank" rel="noopener noreferrer">
@@ -101,9 +100,9 @@ const LibraryDetail = () => {
           </Card>
 
           <div className={styles.mapSection}>
-            <Title level={3}>Joylashuv</Title>
+            <h3>Joylashuv</h3>
             <div className={styles.map}>
-              {/* Google Maps integratsiyasi uchun joy */}
+       
               <div className={styles.mapPlaceholder}>
                 Xarita yuklanmoqda...
               </div>
@@ -113,30 +112,30 @@ const LibraryDetail = () => {
 
         <Col xs={24} lg={8}>
           <Card className={styles.statsCard}>
-            <Title level={3}>Statistika</Title>
+            <h3>Statistika</h3>
             <Row gutter={[16, 16]}>
               <Col span={12}>
                 <Card className={styles.statItem}>
-                  <Title level={4}>15,000+</Title>
-                  <Text>Kitoblar</Text>
+                  <h4>15,000+</h4>
+                  <p>Kitoblar</p>
                 </Card>
               </Col>
               <Col span={12}>
                 <Card className={styles.statItem}>
-                  <Title level={4}>1,000+</Title>
-                  <Text>A'zolar</Text>
+                  <h4>1,000+</h4>
+                  <p>A'zolar</p>
                 </Card>
               </Col>
               <Col span={12}>
                 <Card className={styles.statItem}>
-                  <Title level={4}>500+</Title>
-                  <Text>Kunlik tashrif</Text>
+                  <h4>500+</h4>
+                  <p>Kunlik tashrif</p>
                 </Card>
               </Col>
               <Col span={12}>
                 <Card className={styles.statItem}>
-                  <Title level={4}>50+</Title>
-                  <Text>Xodimlar</Text>
+                  <h4>50+</h4>
+                  <p>Xodimlar</p>
                 </Card>
               </Col>
             </Row>
@@ -145,7 +144,7 @@ const LibraryDetail = () => {
       </Row>
 
       <div className={styles.booksSection}>
-        <Title level={2}>Kutubxona fondi</Title>
+        <h2>Kutubxona fondi</h2>
         <Table 
           columns={columns} 
           dataSource={books}
