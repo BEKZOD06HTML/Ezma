@@ -22,18 +22,18 @@
 }
 .ring i:nth-child(2) {
     color:#00ff0a ;
-    border-radius: 36% 44% 56% 59%  / 38% 62% 68% 37% ;
+    border-radius: 36% 44% 56% 59%  / 38% 62% 48% 37% ;
     animation: animate2  4s linear infinite;
 }
 .ring i:nth-child(3) {
     color: #ff0057;
-    border-radius:   40% 44% 56% 59% /  37% 62% 63% 37%;
+    border-radius:   67% 44% 37% 59% /  37% 62% 75% 37%;
     animation: animate2  10s linear infinite;
 }
 
 .ring:hover i {
-    color: #fffd44;
-    border: 6px solid #fffd44;
+    color: #ffd700 ;
+    border: 6px solid #ffd700 ;
     filter: drop-shadow(0 0 20px #ffffff);
 
 }

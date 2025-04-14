@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Input, Row, Col, Card, Typography, Space, Button } from 'antd';
+import { Input, Row, Col, Card, Typography, Space, Button, Empty } from 'antd';
 import { 
   BookOutlined, 
   ThunderboltOutlined, 
@@ -17,10 +17,32 @@ import styles from './HomePage.module.css';
 const { Title, Paragraph } = Typography;
 const { Search } = Input;
 
+interface Book {
+  id: number;
+  title: string;
+  author: string;
+  image: string;
+}
+
+interface Library {
+  id: number;
+  name: string;
+  address: string;
+  image: string;
+}
+
+interface Feature {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
 const HomePage = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const libraries = [
+  const libraries: Library[] = [
     {
       id: 1,
       name: "Alisher Navoiy nomidagi O'zbekiston Milliy Kutubxonasi",
@@ -41,7 +63,7 @@ const HomePage = () => {
     }
   ];
 
-  const popularBooks = [
+  const popularBooks: Book[] = [
     {
       id: 1,
       title: "O'tkan kunlar",
@@ -62,7 +84,7 @@ const HomePage = () => {
     }
   ];
 
-  const features = [
+  const features: Feature[] = [
     {
       icon: <BookOutlined className={styles.featureIcon} />,
       title: "Ko'plab kutubxonalar bazasi",
@@ -87,10 +109,22 @@ const HomePage = () => {
 
   const handleSearch = (value: string) => {
     setSearchValue(value);
-    console.log('Qidirilayotgan kitob:', value);
+    setIsSearching(true);
+    
+    if (!value.trim()) {
+      setFilteredBooks([]);
+      setIsSearching(false);
+      return;
+    }
+
+    const filtered = popularBooks.filter(book => 
+      book.title.toLowerCase().includes(value.toLowerCase()) ||
+      book.author.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredBooks(filtered);
   };
 
-  const LibraryCard = ({ library }: { library: any }) => (
+  const LibraryCard = ({ library }: { library: Library }) => (
     <Card className={styles.libraryCard}>
       <img src={library.image} alt={library.name} className={styles.libraryImage} />
       <Title level={4}>{library.name}</Title>
@@ -112,7 +146,6 @@ const HomePage = () => {
         <div className={styles.searchContainer}>
           <Search
             placeholder="Kitob qidirish..."
-            allowClear
             enterButton="Qidirish"
             size="large"
             value={searchValue}
@@ -122,6 +155,37 @@ const HomePage = () => {
           />
         </div>
       </div>
+
+      {isSearching && (
+        <div className={styles.searchResults}>
+          <Title level={2} className={styles.sectionTitle}>
+            Qidiruv natijalari
+          </Title>
+          {filteredBooks.length > 0 ? (
+            <Row gutter={[24, 24]}>
+              {filteredBooks.map(book => (
+                <Col xs={24} sm={12} md={8} key={book.id}>
+                  <Card
+                    hoverable
+                    cover={<img alt={book.title} src={book.image} />}
+                    className={styles.bookCard}
+                  >
+                    <Card.Meta
+                      title={book.title}
+                      description={book.author}
+                    />
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          ) : (
+            <Empty
+              description="Kitob topilmadi"
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+            />
+          )}
+        </div>
+      )}
 
       <div className={styles.librariesSection}>
         <Title level={2} className={styles.sectionTitle}>

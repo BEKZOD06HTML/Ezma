@@ -4,8 +4,7 @@
 }
 
 .heroSection {
-  background: linear-gradient(rgba(11, 45, 45, 0.85), rgba(11, 45, 45, 0.95)),
-              url('/hero-background.jpg');
+  background: linear-gradient(rgba(11, 45, 45, 0.85), rgba(11, 45, 45, 0.95));
   background-size: cover;
   background-position: center;
   padding: 100px 20px;
@@ -28,45 +27,83 @@
 .searchContainer {
   max-width: 600px;
   width: 100%;
-  display: flex;
-  border: 2px solid #FFD700;
-  border-radius: 30px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
   margin: 0 auto;
+  position: relative;
 }
 
 .searchInput {
-  flex: 1;
+  width: 100% !important;
+}
+
+.searchInput :global(.ant-input-wrapper) {
+  border: 2px solid #FFD700 !important;
+  border-radius: 30px !important;
+  overflow: hidden !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+.searchInput :global(.ant-input) {
   height: 50px !important;
   background: transparent !important;
   border: none !important;
   padding: 0 24px !important;
   font-size: 16px !important;
   color: #FFD700 !important;
+  caret-color: #FFD700 !important;
 }
 
-.searchInput::placeholder {
+.searchInput :global(.ant-input)::placeholder {
   color: rgba(255, 215, 0, 0.7) !important;
+  opacity: 1 !important;
 }
 
-.searchButton {
-  width: 120px !important;
+.searchInput :global(.ant-input-search-button) {
   height: 50px !important;
+  width: 120px !important;
   background: #FFD700 !important;
   border: none !important;
+  border-radius: 0 30px 30px 0 !important;
+  margin: 0 !important;
   color: #0B2D2D !important;
   font-size: 16px !important;
   font-weight: 600 !important;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
 }
 
-.searchButton:hover {
+.searchInput :global(.ant-input-search-button:hover) {
   background: #F4C430 !important;
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.searchInput :global(.ant-input-search-button .anticon) {
+  color: #0B2D2D !important;
+  font-size: 16px !important;
+}
+
+.searchInput :global(.ant-input-affix-wrapper) {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.searchInput :global(.ant-input:focus) {
+  box-shadow: none !important;
+  border-color: #FFD700 !important;
+  outline: none !important;
+}
+
+.searchInput :global(.ant-input-wrapper:hover) {
+  border-color: #F4C430 !important;
+}
+
+.searchInput :global(.ant-input-wrapper:focus-within) {
+  border-color: #FFD700 !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2) !important;
 }
 
 .searchBar :global(.ant-input-search-button) {
