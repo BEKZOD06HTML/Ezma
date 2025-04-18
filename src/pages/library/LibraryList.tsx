@@ -5,7 +5,6 @@ import { Pagination } from 'antd';
 import { useGetLibrary } from '../../hooks/useLibrary';
 import LibraryCard from './card';
 import styles from './libraryList.module.css';
-import { useNavigate, NavigateFunction } from 'react-router-dom';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -13,7 +12,6 @@ const LibrariesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const { library, libraryError } = useGetLibrary();
-  const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
