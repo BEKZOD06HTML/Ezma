@@ -3,7 +3,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Pagination } from 'antd';
 import { useGetLibrary } from '../../hooks/useLibrary';
 import LibraryCard from './card';
-import styles from './libraryList.module.css';
+import styles from './LibraryList.module.css';
 
 const ITEMS_PER_PAGE = 8;
 
