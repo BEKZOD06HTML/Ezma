@@ -2,8 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BookOutlined } from '@ant-design/icons';
 import './add.css';
-
 const AddBooks = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,9 +11,16 @@ const AddBooks = () => {
     publisher: '',
     quantity_in_library: '',
   });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,12 +33,23 @@ const AddBooks = () => {
     }
 
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('author', formData.author);
+      formDataToSend.append('publisher', formData.publisher);
+      formDataToSend.append('quantity_in_library', formData.quantity_in_library);
+      
+      if (selectedFile) {
+        formDataToSend.append('file', selectedFile);
+      }
+
       const response = await axios.post(
         'https://s-libraries.uz/api/v1/books/add-books/',
-        [formData],
+        formDataToSend,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -43,6 +61,7 @@ const AddBooks = () => {
         publisher: '',
         quantity_in_library: '',
       });
+      setSelectedFile(null);
       console.log(response.data);
     } catch (error) {
       console.error('Xatolik:', error);
@@ -114,16 +133,25 @@ const AddBooks = () => {
                 className="form-input"
               />
             </div>
+            <div className="form-group">
+              <label className="file-upload-btn">
+                Excel faylini yuklash
+                <input
+                  type="file"
+                  accept=".xlsx,.xls,.csv"
+                  onChange={handleFileChange}
+                  className="file-input"
+                />
+              </label>
+              {selectedFile && (
+                <p className="file-name">Tanlangan fayl: {selectedFile.name}</p>
+              )}
+            </div>
             <button type="submit" className="submit-btn">Qo'shish</button>
           </form>
         </div>
         <div className="illustration-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
-            <rect x="50" y="50" width="400" height="400" fill="#0B2D2D" rx="20"/>
-            <text x="100" y="200" fontSize="40" fill="#FFD700">Yangi</text>
-            <text x="100" y="250" fontSize="40" fill="#FFD700">Kitob</text>
-            <text x="100" y="300" fontSize="40" fill="#FFD700">Qo'shish</text>
-          </svg>
+        < BookOutlined style={{fontSize: '100px', color: '#0B2D2D'}} />
         </div>
       </div>
     </div>
