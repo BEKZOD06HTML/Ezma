@@ -151,7 +151,14 @@ const AddBooks = () => {
           </form>
         </div>
         <div className="illustration-wrapper">
-        < BookOutlined style={{fontSize: '100px', color: '#0B2D2D'}} />
+          <BookOutlined style={{
+            fontSize: '200px',
+            color: '#FFD700',
+            boxShadow: '0 0 20px #FFD700  , 0 0 40px #FFD700, 0 0 60px #FFD700',
+            backdropFilter: 'blur(10px)',
+            background: 'transparent',
+            padding: '20px 10px ',
+          }} />
         </div>
       </div>
     </div>
