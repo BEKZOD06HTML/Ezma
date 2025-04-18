@@ -1,241 +1,134 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Input, Row, Col, Card, Space, Button, Empty } from 'antd';
-import { 
-  BookOutlined, 
-  ThunderboltOutlined, 
-  EnvironmentOutlined, 
-  SafetyCertificateOutlined
-} from '@ant-design/icons';
+// src/components/HomePage/Home.jsx
+import { useState, useEffect } from "react";
+import { Input, Button, Alert, List, Spin, Card, Row, Col, Space } from "antd";
+import {LoadingOutlined, BookOutlined, SearchOutlined, TeamOutlined, CloudServerOutlined,} from "@ant-design/icons";
+import { useSearch } from '../../hooks/usehook';
+import { useNavigate, NavigateFunction } from "react-router-dom";
 import styles from './HomePage.module.css';
-
-const { Search } = Input;
 
 interface Book {
   id: number;
-  title: string;
-  author: string;
-  image: string;
-}
-
-interface Library {
-  id: number;
   name: string;
-  address: string;
-  image: string;
+  author: string;
+  publisher: string;
+  quantity_in_library: number;
 }
 
-interface Feature {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+interface SearchResponse {
+  data: Book[];
 }
 
-const HomePage = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
+export default function Home() {
+  const [query, setQuery] = useState("");
+  const [debounced, setDebounced] = useState("");
+  const navigate: NavigateFunction = useNavigate();
 
-  const libraries: Library[] = [
-    {
-      id: 1,
-      name: "Alisher Navoiy nomidagi O'zbekiston Milliy Kutubxonasi",
-      address: "Toshkent sh., Navoiy ko'chasi, 1-uy",
-      image: "/libraries/national.jpg"
-    },
-    {
-      id: 2,
-      name: "Abu Ali ibn Sino nomidagi Toshkent Tibbiyot Akademiyasi Kutubxonasi",
-      address: "Toshkent sh., Farobiy ko'chasi, 2-uy",
-      image: "/libraries/medical.jpg"
-    },
-    {
-      id: 3,
-      name: "O'zbekiston Fanlar Akademiyasi Asosiy Kutubxonasi",
-      address: "Toshkent sh., Ziyolilar ko'chasi, 13-uy",
-      image: "/libraries/science.jpg"
-    }
-  ];
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounced(query.trim()), 400);
+    return () => clearTimeout(timer);
+  }, [query]);
 
-  const popularBooks: Book[] = [
-    {
-      id: 1,
-      title: "O'tkan kunlar",
-      author: "Abdulla Qodiriy",
-      image: "/books/otkan-kunlar.jpg"
-    },
-    {
-      id: 2,
-      title: "Kecha va Kunduz",
-      author: "Cho'lpon",
-      image: "/books/kecha-kunduz.jpg"
-    },
-    {
-      id: 3,
-      title: "Sariq Devni Minib",
-      author: "Xudoyberdi To'xtaboyev",
-      image: "/books/sariq-dev.jpg"
-    }
-  ];
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
-  const features: Feature[] = [
-    {
-      icon: <BookOutlined className={styles.featureIcon} />,
-      title: "Ko'plab kutubxonalar bazasi",
-      description: "Respublikadagi barcha yirik kutubxonalar bir tizimda"
-    },
-    {
-      icon: <ThunderboltOutlined className={styles.featureIcon} />,
-      title: "Tezkor qidiruv",
-      description: "Soniyalar ichida kerakli kitobingizni toping"
-    },
-    {
-      icon: <EnvironmentOutlined className={styles.featureIcon} />,
-      title: "Eng yaqin kutubxona",
-      description: "Sizga eng yaqin kutubxonani aniqlash imkoniyati"
-    },
-    {
-      icon: <SafetyCertificateOutlined className={styles.featureIcon} />,
-      title: "Tasdiqlangan ma'lumotlar",
-      description: "Ishonchli va yangilangan ma'lumotlar bazasi"
-    }
-  ];
+  const { data: results, isLoading, error } = useSearch<SearchResponse>(debounced);
 
-  const handleSearch = (value: string) => {
-    setSearchValue(value);
-    setIsSearching(true);
-    
-    if (!value.trim()) {
-      setFilteredBooks([]);
-      setIsSearching(false);
-      return;
-    }
-
-    const filtered = popularBooks.filter(book => 
-      book.title.toLowerCase().includes(value.toLowerCase()) ||
-      book.author.toLowerCase().includes(value.toLowerCase())
+  if (error) {
+    return (
+      <Alert
+        message="Xatolik"
+        description={error.message}
+        type="error"
+        showIcon
+      />
     );
-    setFilteredBooks(filtered);
+  }
+
+  const renderResults = () => {
+    if (isLoading) {
+      return (
+        <div className={styles.loader}>
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
+        </div>
+      );
+    }
+    if (!results?.data?.length) {
+      return <p className={styles.noResult}>Hech narsa topilmadi.</p>;
+    }
+    return (
+      <List
+        className={styles.resultsList}
+        itemLayout="horizontal"
+        dataSource={results.data}
+        renderItem={(book: Book) => (
+          <List.Item
+            actions={[
+              <Button type="link" onClick={() => navigate(`/book/${book.id}`)}>
+                Batafsil
+              </Button>
+            ]}
+          >
+            <List.Item.Meta 
+              title={<span className={styles.bookTitle}>{book.name}</span>}
+              description={
+                <span className={styles.bookInfo}>
+                  {`${book.author} | ${book.publisher} | ${book.quantity_in_library}`}
+                </span>
+              }
+            />
+          </List.Item>
+        )}
+      />
+    );
   };
 
-  const LibraryCard = ({ library }: { library: Library }) => (
-    <Card className={styles.libraryCard}>
-      <img src={library.image} alt={library.name} className={styles.libraryImage} />
-      <h4>{library.name}</h4>
-      <p>{library.address}</p>
-      <Link to={`/library/${library.id}`}>
-        <Button type="primary" className={styles.detailButton}>
-          Batafsil
-        </Button>
-      </Link>
-    </Card>
-  );
+  const features = [
+    { icon: <BookOutlined className={styles.icon} />, title: "Keng kutubxonalar tarmog'i", desc: "Barcha davlat kutubxonalari bir tizimda" },
+    { icon: <SearchOutlined className={styles.icon} />, title: "Qulay qidiruv", desc: "Kitoblarni tez va oson topish imkoniyati" },
+    { icon: <TeamOutlined className={styles.icon} />, title: "Kitobxonlar uchun", desc: "Kitobxonlar uchun maxsus imkoniyatlar" },
+    { icon: <CloudServerOutlined className={styles.icon} />, title: "Online xizmatlar", desc: "Masofadan turib xizmatlardan foydalanish" },
+  ];
 
   return (
-    <div className={styles.homePage}>
+    <section className={styles.container}>
       <div className={styles.heroSection}>
-        <h1 className={styles.mainTitle}>
-          O'zbek davlat kutubxonalaridan kitob qidirish tizimi
-        </h1>
-        <div className={styles.searchContainer}>
-          <Search
-            placeholder="Kitob qidirish..."
-            enterButton="Qidirish"
-            size="large"
-            value={searchValue}
-            onChange={(e) => handleSearch(e.target.value)}
-            onSearch={handleSearch}
+        <h2 className={styles.mainTitle}>
+            Kutubxona yoki kitob nomi kerak bulsa yozing
+        </h2>
+        <div className={styles.searchWrapper}>
+          <Input
+            placeholder="Kitob nomi, muallif nomi"
+            prefix={<SearchOutlined className={styles.searchIcon} />}
             className={styles.searchInput}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
       </div>
 
-      {isSearching && (
-        <div className={styles.searchResults}>
-          <h2 className={styles.sectionTitle}>
-            Qidiruv natijalari
-          </h2>
-          {filteredBooks.length > 0 ? (
-            <Row gutter={[24, 24]}>
-              {filteredBooks.map(book => (
-                <Col xs={24} sm={12} md={8} key={book.id}>
-                  <Card
-                    hoverable
-                    cover={<img alt={book.title} src={book.image} />}
-                    className={styles.bookCard}
-                  >
-                    <Card.Meta
-                      title={book.title}
-                      description={book.author}
-                    />
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          ) : (
-            <Empty
-              description="Kitob topilmadi"
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-            />
-          )}
+      {debounced && (
+        <div className={styles.resultsContainer}>
+          {renderResults()}
         </div>
       )}
 
-      <div className={styles.librariesSection}>
-        <h2 className={styles.sectionTitle}>
-          Kutubxonalar
-        </h2>
-        <Row gutter={[24, 24]}>
-          {libraries.map(library => (
-            <Col span={8} key={library.id}>
-              <LibraryCard library={library} />
-            </Col>
-          ))}
-        </Row>
-      </div>
-
-      <div className={styles.popularBooksSection}>
-        <h2 className={styles.sectionTitle}>
-          Eng ko'p qidirilgan kitoblar
-        </h2>
-        <Row gutter={[24, 24]}>
-          {popularBooks.map(book => (
-            <Col span={8} key={book.id}>
-              <Card
-                hoverable
-                cover={<img alt={book.title} src={book.image} />}
-                className={styles.bookCard}
-              >
-                <Card.Meta
-                  title={book.title}
-                  description={book.author}
-                />
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </div>
-
       <div className={styles.featuresSection}>
-        <h2 className={styles.sectionTitle}>
-          Nega aynan bizning tizim?
-        </h2>
+        <h2 className={styles.sectionTitle}>Nega aynan bizning tizim?</h2>
         <Row gutter={[32, 32]}>
-          {features.map((feature, index) => (
-            <Col span={6} key={index}>
+          {features.map((f, idx) => (
+            <Col span={6} key={idx}>
               <Card className={styles.featureCard}>
                 <Space direction="vertical" align="center">
-                  {feature.icon}
-                  <h4>{feature.title}</h4>
-                  <p>{feature.description}</p>
+                  {f.icon}
+                  <h4>{f.title}</h4>
+                  <p>{f.desc}</p>
                 </Space>
               </Card>
             </Col>
           ))}
         </Row>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default HomePage; 
+}

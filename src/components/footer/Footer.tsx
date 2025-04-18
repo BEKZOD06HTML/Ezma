@@ -37,7 +37,6 @@ const Footer: React.FC = () => {
 
           <Col xs={24} sm={16}>
             <Row gutter={[32, 24]}>
-              {/* Explore Section */}
               <Col xs={12} sm={8}>
                 <h5 className={styles.columnTitle}>
                   <CompassOutlined className={styles.titleIcon} /> Explore
@@ -50,7 +49,6 @@ const Footer: React.FC = () => {
                 </Space>
               </Col>
 
-              {/* Connect Section */}
               <Col xs={12} sm={8}>
                 <h5 className={styles.columnTitle}>
                   <FacebookOutlined className={styles.titleIcon} /> Connect
@@ -63,7 +61,6 @@ const Footer: React.FC = () => {
                 </Space>
               </Col>
 
-              {/* Support Section */}
               <Col xs={12} sm={8}>
                 <h5 className={styles.columnTitle}>
                   <CustomerServiceOutlined className={styles.titleIcon} /> Support

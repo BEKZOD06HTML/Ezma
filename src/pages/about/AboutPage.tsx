@@ -11,21 +11,21 @@ const AboutPage: React.FC = () => {
       id: 1,
       name: "Aziz Rakhimov",
       role: "Loyiha rahbari",
-      image: "/team/leader.jpg",
+      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: "5 yillik tajribaga ega dasturiy ta'minot muhandisi"
     },
     {
       id: 2,
       name: "Malika Karimova",
       role: "UI/UX Dizayner",
-      image: "/team/designer.jpg",
+      image: "https://images.pexels.com/photos/3776932/pexels-photo-3776932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: "Foydalanuvchi interfeyslarini yaratish bo'yicha mutaxassis"
     },
     {
       id: 3,
       name: "Jamshid Toshmatov",
       role: "Backend Dasturchi",
-      image: "/team/backend.jpg",
+      image: "https://images.pexels.com/photos/4195342/pexels-photo-4195342.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       description: "Ma'lumotlar bazasi va server tomonini boshqarish bo'yicha mutaxassis"
     }
   ];
@@ -55,12 +55,6 @@ const AboutPage: React.FC = () => {
 
   return (
     <div className={styles.aboutPage}>
-      <h1 className={styles.title}>About Us</h1>
-      <p className={styles.description}>
-        Welcome to our library management system. We are dedicated to providing the best service to our users.
-      </p>
-    
-
       <div className={styles.carouselSection}>
         <h2>Bizning jamoa</h2>
         <Carousel

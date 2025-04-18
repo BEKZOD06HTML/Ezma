@@ -1,140 +1,78 @@
+/* src/components/LibrariesPage.tsx */
+import React, { useState, useEffect } from 'react';
+import { SearchOutlined } from '@ant-design/icons';
+import { Pagination } from 'antd';
+import { useGetLibrary } from '../../hooks/useLibrary';
+import LibraryCard from './card';
+import styles from './libraryList.module.css';
+import { useNavigate, NavigateFunction } from 'react-router-dom';
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col, Card, Space, Input, Select } from 'antd';
-import { EnvironmentOutlined, BookOutlined } from '@ant-design/icons';
-import styles from './LibraryList.module.css';
+const ITEMS_PER_PAGE = 8;
 
-const { Option } = Select;
-
-const LibraryList = () => {
+const LibrariesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCity, setSelectedCity] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const { library, libraryError } = useGetLibrary();
+  const navigate: NavigateFunction = useNavigate();
 
-  const cities = [
-    "Andijon",
-    "Buxoro",
-    "Fargʻona",
-    "Jizzax",
-    "Xorazm",
-    "Namangan",
-    "Navoiy",
-    "Qashqadaryo",
-    "Samarqand",
-    "Sirdaryo",
-    "Surxondaryo",
-    "Toshkent"
-  ];
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
-  // Mock ma'lumotlar
-  const libraries = [
-    {
-      id: 1,
-      name: "Alisher Navoiy nomidagi O'zbekiston Milliy Kutubxonasi",
-      city: "Toshkent",
-      address: "Navoiy ko'chasi, 1-uy",
-      totalBooks: 15000,
-      image: "/libraries/national.jpg"
-    },
-    {
-      id: 2,
-      name: "Abu Ali ibn Sino nomidagi TTA Kutubxonasi",
-      city: "Toshkent",
-      address: "Farobiy ko'chasi, 2-uy",
-      totalBooks: 8000,
-      image: "/libraries/medical.jpg"
-    },
-    {
-      id: 3,
-      name: "Buxoro viloyat Axborot-Kutubxona Markazi",
-      city: "Buxoro",
-      address: "Alisher Navoiy shoh ko'chasi, 25",
-      totalBooks: 12000,
-      image: "/libraries/bukhara.jpg"
-    },
-    {
-      id: 4,
-      name: "Samarqand Davlat Universiteti Kutubxonasi",
-      city: "Samarqand",
-      address: "Universitet xiyoboni, 15",
-      totalBooks: 10000,
-      image: "/libraries/samarkand.jpg"
-    }
-  ];
+  if (libraryError) {
+    return <div className={styles.errorMessage}>Xatolik: {libraryError.message}</div>;
+  }
 
-  const filteredLibraries = libraries.filter(library => {
-    const matchesSearch = library.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         library.address.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCity = selectedCity === 'all' || library.city === selectedCity;
-    return matchesSearch && matchesCity;
-  });
+  const matchedLibraries = (library || []).filter((item: any) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const totalItems = matchedLibraries.length;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const visibleItems = matchedLibraries.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const handleLibraryClick  = (id: number) => {
+    navigate(`/library/${id}`);
+  };
 
   return (
-    <div className={styles.libraryList}>
-      <div className={styles.header}>
-        <h1>Kutubxonalar</h1>
-        <div className={styles.filters}>
-          <Space size={20}>
-            <Input
-              placeholder="Kutubxona nomini kiriting"
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={styles.searchInput2}
-            />
-            <Select
-              defaultValue="all"
-              onChange={setSelectedCity}
-              className={styles.citySelect}
-              dropdownClassName={styles.cityDropdown}
-            >
-              <Option value="all">Barcha shaharlar</Option>
-              {cities.map(city => (
-                <Option key={city} value={city}>{city}</Option>
-              ))}
-            </Select>
-          </Space>
+    <section className={styles.pageWrapper}>
+      <div className={styles.pageContainer}>
+        <h1 className={styles.pageTitle}>Kutubxonalar ro'yxati</h1>
+
+        <div className={styles.searchWrap}>
+          <SearchOutlined className={styles.searchIcon} />
+          <input
+            type="text"
+            placeholder="Nom bo'yicha qidirish..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            className={styles.searchField}
+          />
         </div>
+
+        <div className={styles.gridWrapper}>
+          {visibleItems.length > 0 
+            ? visibleItems.map((lib: any) => (
+                <LibraryCard key={lib.id} lib={lib} viewMode="grid" />
+              ))
+            : <p className={styles.emptyMessage}>Hech qanday natija topilmadi.</p>
+          }
+        </div>
+
+        {totalItems > ITEMS_PER_PAGE && (
+          <Pagination
+            className={styles.pager}
+            current={currentPage}
+            total={totalItems}
+            pageSize={ITEMS_PER_PAGE}
+            onChange={page => setCurrentPage(page)}
+            showSizeChanger={false}
+          />
+        )}
       </div>
-
-      <Row gutter={[24, 24]} className={styles.libraryGrid}>
-        {filteredLibraries.map(library => (
-          <Col xs={24} sm={12} lg={8} key={library.id}>
-            <Link to={`/library/${library.id}`} className={styles.libraryLink}>
-              <Card
-                hoverable
-                className={styles.libraryCard}
-                cover={
-                  <div className={styles.imageContainer}>
-                    <img alt={library.name} src={library.image} />
-                  </div>
-                }
-              >
-                <h4 className={styles.libraryName}>
-                  {library.name}
-                </h4>
-                <Space direction="vertical" size={12} className={styles.libraryInfo}>
-                  <div className={styles.infoItem}>
-                    <EnvironmentOutlined className={styles.icon} />
-                    <p>{library.city}, {library.address}</p>
-                  </div>
-                  <div className={styles.infoItem}>
-                    <BookOutlined className={styles.icon} />
-                    <p>{library.totalBooks.toLocaleString()} ta kitob</p>
-                  </div>
-                </Space>
-              </Card>
-            </Link>
-          </Col>
-        ))}
-      </Row>
-
-      {filteredLibraries.length === 0 && (
-        <div className={styles.noResults}>
-          <h3>Kutubxonalar topilmadi</h3>
-          <p>Iltimos, qidiruv so'rovini o'zgartiring yoki filtrlarni qayta sozlang</p>
-        </div>
-      )}
-    </div>
+    </section>
   );
 };
 
-export default LibraryList; 
+export default LibrariesPage;
