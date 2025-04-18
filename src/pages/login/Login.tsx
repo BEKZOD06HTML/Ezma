@@ -27,7 +27,7 @@ function Login() {
     setIsLoading(true);
     try {
       await loginMutation.mutateAsync(values);
-      navigate('/dashboard');
+      navigate('/');
     } catch (error) {
       console.error('Login error:', error);
     } finally {
