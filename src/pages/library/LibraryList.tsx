@@ -31,10 +31,6 @@ const LibrariesPage: React.FC = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const visibleItems = matchedLibraries.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-  const handleLibraryClick  = (id: number) => {
-    navigate(`/library/${id}`);
-  };
-
   return (
     <section className={styles.pageWrapper}>
       <div className={styles.pageContainer}>

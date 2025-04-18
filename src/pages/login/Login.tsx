@@ -20,7 +20,6 @@ const validationSchema = Yup.object({
 function Login() {
     const navigate = useNavigate();
     const { loginMutation } = useAuth();
-    const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false); 
 
@@ -28,7 +27,6 @@ function Login() {
         setIsLoading(true);
         try {
             await loginMutation.mutateAsync(values);
-  
             navigate('/dashboard'); 
         } catch (error) {
             console.error('Login error:', error);
